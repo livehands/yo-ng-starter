@@ -47,6 +47,11 @@ module.exports = class extends Generator {
   }
 
   install() {
-    this.installDependencies();
+    this.installDependencies({
+      npm: true,
+      bower: false,
+      yarn: false
+    });
+    this.npmInstall(['@angular-devkit/build-angular'], { 'save-dev': true });
   }
 };
