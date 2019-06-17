@@ -1,21 +1,31 @@
-'use strict';
-const Generator = require('yeoman-generator');
-const chalk = require('chalk');
-const yosay = require('yosay');
+"use strict";
+const Generator = require("yeoman-generator");
+const chalk = require("chalk");
+const yosay = require("yosay");
 
 module.exports = class extends Generator {
   prompting() {
     // Have Yeoman greet the user.
     this.log(
-      yosay(`Welcome to the supreme ${chalk.red('generator-lh-ng-starter')} generator!`)
+      yosay(
+        `Welcome to the supreme ${chalk.red(
+          "generator-lh-ng-starter"
+        )} generator!`
+      )
     );
 
     const prompts = [
       {
-        type: 'confirm',
-        name: 'someAnswer',
-        message: 'Would you like to enable this option?',
-        default: true
+        type: "input",
+        name: "projName",
+        message: "What the name of your project (no spaces)?",
+        default: "my-ng-proj"
+      },
+      {
+        type: "input",
+        name: "title",
+        message: "What is the title for the app (spaces allowed)?",
+        default: "My Ng Project"
       }
     ];
 
@@ -26,9 +36,13 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    this.fs.copy(
-      this.templatePath('dummyfile.txt'),
-      this.destinationPath('dummyfile.txt')
+    this.fs.copyTpl(
+      this.templatePath("**"),
+      this.destinationPath(this.props.projName),
+      {
+        title: this.props.title,
+        projName: this.props.projName
+      }
     );
   }
 
