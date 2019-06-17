@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Karim Kameka",
+      "authorEmail": "karim@livehands.com",
+      "authorUrl": "https://github.com/livehands"
+    }
+  }
+}
